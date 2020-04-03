@@ -10,6 +10,8 @@ import {
     BrowserRouter, Switch,
     Route, Redirect
 } from "react-router-dom";
+import BookView from "./containers/bookView";
+import MyListView from "./containers/myListView";
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware));
 
@@ -20,6 +22,9 @@ ReactDOM.render(
             <Switch>
                 <Route path="/food/create" component={FoodCreator}/>
                 <Route path="/food" component={FoodListViewer} />
+                <Route path="/book" component={BookView}/>
+                <Route path="/mylist" component={MyListView}/>
+
                 <Redirect exact from="/" to="food" />
             </Switch>
         </BrowserRouter>

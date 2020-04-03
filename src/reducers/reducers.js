@@ -36,10 +36,58 @@ function foodList(
     }
 }
 
+function bookList(
+    state = {
+        inFlight: false,
+        list: []
+    },
+    action
+) {
+    switch (action.type) {
+        case "REQUEST_BOOK_LIST":
+            return Object.assign({}, state, {
+                inFlight: true
+            });
+        case "RECEIVE_BOOK_LIST":
+            return Object.assign({}, state, {
+                inFlight: false,
+                list: action.bookList,
+            });
+        default:
+            return state
+    }
+}
+
+function myList(
+    state = {
+        inFlight: false,
+        toReadList: [],
+        haveReadList: []
+    },
+    action
+) {
+    switch (action.type) {
+        case "REQUEST_BOOK_LIST":
+            return Object.assign({}, state, {
+                inFlight: true
+            });
+        case "RECEIVE_BOOK_LIST":
+            return Object.assign({}, state, {
+                inFlight: false,
+                toReadList: action.toReadList,
+                haveReadList: action.haveReadList
+            });
+        default:
+            return state
+    }
+}
+
 const rootReducer = combineReducers({
     selectedFood,
     createFood,
     foods: foodList,
+    books: bookList,
+    myList: myList
 });
 
 export default rootReducer
