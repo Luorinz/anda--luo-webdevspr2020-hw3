@@ -21,7 +21,7 @@ class MyListView extends React.Component {
         }
 
         return (<div>
-            <h1>These are my books!</h1>
+            <h1><a href="/book">Search Books</a></h1>
             <div>{this._renderMyList()}</div>
         </div>);
     }

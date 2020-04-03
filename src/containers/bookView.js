@@ -26,7 +26,9 @@ class BookView extends React.Component {
 
         return (
             <div>
-                <h1>Book Search</h1>
+                <h1><a href="/mylist">My List</a></h1>
+
+                <h2>Book Search</h2>
                 <label>Title</label>
                 <div>
                     <input onChange={(e) => request.title = e.target.value} name="title" component="input" type="text"
@@ -52,35 +54,35 @@ class BookView extends React.Component {
             return null;
         }
 
-        const foodRows = this.props.bookList.map(food => (
-            <tr key={food.id}>
-                <td>{food.volumeInfo.title}</td>
-                <td>{food.volumeInfo.subtitle}</td>
-                <td>{food.volumeInfo.authors}</td>
-                <td>{food.volumeInfo.publisher}</td>
-                <td>{food.volumeInfo.publishedDate}</td>
-                <td>{food.volumeInfo.description}</td>
+        const bookRows = this.props.bookList.map(book => (
+            <tr key={book.id}>
+                <td>{book.volumeInfo.title}</td>
+                <td>{book.volumeInfo.subtitle}</td>
+                <td>{book.volumeInfo.authors}</td>
+                <td>{book.volumeInfo.publisher}</td>
+                <td>{book.volumeInfo.publishedDate}</td>
+                <td>{book.volumeInfo.description}</td>
                 <td><button type="submit" onClick={() => {
                     Axios.post("/api/book/addtoread", {
-                        id: food.id,
-                        title: food.volumeInfo.title,
-                        subtitle: food.volumeInfo.subtitle,
-                        authors: food.volumeInfo.authors,
-                        publisher: food.volumeInfo.publisher,
-                        publishedDate: food.volumeInfo.publishedDate,
-                        description: food.volumeInfo.description
+                        id: book.id,
+                        title: book.volumeInfo.title,
+                        subtitle: book.volumeInfo.subtitle,
+                        authors: book.volumeInfo.authors,
+                        publisher: book.volumeInfo.publisher,
+                        publishedDate: book.volumeInfo.publishedDate,
+                        description: book.volumeInfo.description
                     });
                 }
                 }>Add to To-Read</button></td>
                 <td><button type="submit" onClick={() => {
                     Axios.post("/api/book/addhaveread", {
-                        id: food.id,
-                        title: food.volumeInfo.title,
-                        subtitle: food.volumeInfo.subtitle,
-                        authors: food.volumeInfo.authors,
-                        publisher: food.volumeInfo.publisher,
-                        publishedDate: food.volumeInfo.publishedDate,
-                        description: food.volumeInfo.description
+                        id: book.id,
+                        title: book.volumeInfo.title,
+                        subtitle: book.volumeInfo.subtitle,
+                        authors: book.volumeInfo.authors,
+                        publisher: book.volumeInfo.publisher,
+                        publishedDate: book.volumeInfo.publishedDate,
+                        description: book.volumeInfo.description
                     });
                 }
                 }>Add to Have-Read</button></td>
@@ -98,7 +100,7 @@ class BookView extends React.Component {
             </tr>
             </thead>
             <tbody>
-            {foodRows}
+            {bookRows}
             </tbody>
         </table>)
 

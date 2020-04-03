@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FoodListViewer from './containers/foodList'
-import FoodCreator from './containers/foodCreator'
+
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers/reducers";
@@ -20,12 +19,11 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <Switch>
-                <Route path="/food/create" component={FoodCreator}/>
-                <Route path="/food" component={FoodListViewer} />
+
                 <Route path="/book" component={BookView}/>
                 <Route path="/mylist" component={MyListView}/>
 
-                <Redirect exact from="/" to="food" />
+                <Redirect exact from="/" to="book" />
             </Switch>
         </BrowserRouter>
     </Provider>,

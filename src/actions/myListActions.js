@@ -14,13 +14,6 @@ function receiveMyList(toReadList, haveReadList) {
     }
 }
 
-// export function selectBook(foodId) {
-//     return {
-//         type: "SELECT_BOOK",
-//         foodId
-//     }
-// }
-
 
 function getToReadList() {
     return Axios.get('/api/book/toread');
@@ -33,13 +26,9 @@ function getHaveReadList() {
 
 export function fetchMyList() {
     return function (dispatch) {
-        // Before we do anything, we let the state know
-        // that we're requesting the food list but that it hasn't loaded yet
-        // This lets us do any load animation or disable important functionality
+
         dispatch(requestMyList());
-        // Axios is a just an easy way to make an API call
-        // Remember how we set the proxy in package.json?
-        // This prefills that so it communicates with the server
+
         return Axios.all([getToReadList(), getHaveReadList()])
             .then(Axios.spread((toReadResponse, haveReadResponse) => {
                     console.log(toReadResponse.data, haveReadResponse.data);
